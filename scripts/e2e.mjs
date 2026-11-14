@@ -136,10 +136,16 @@ async function main() {
     const readyMs = Date.now() - t0;
     check('AC-1 三秒内可交互', readyMs < 3000, `${readyMs}ms`);
 
-    const fonts = await page.evaluate(() => ({
-      garamond: document.fonts.check('16px Garamond'),
-      plex: document.fonts.check('16px Plex'),
-    }));
+    const fonts = await page.evaluate(async () => {
+      // 字体是按需加载的：先要一次，再问就有；否则线上会因为慢半拍而误判
+      await document.fonts.load('16px Garamond');
+      await document.fonts.load('16px Plex');
+      await document.fonts.ready;
+      return {
+        garamond: document.fonts.check('16px Garamond'),
+        plex: document.fonts.check('16px Plex'),
+      };
+    });
     check('AC-10 随包字体已加载（Garamond）', fonts.garamond === true);
     check('AC-10 随包字体已加载（Plex）', fonts.plex === true);
 

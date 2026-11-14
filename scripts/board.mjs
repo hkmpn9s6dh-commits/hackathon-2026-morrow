@@ -32,7 +32,7 @@ figure{margin:0;position:relative;aspect-ratio:16/9;overflow:hidden;background:#
 figure img{width:100%;height:100%;object-fit:cover;display:block}
 figure span{position:absolute;left:10px;top:6px;font:600 30px/1 monospace;color:#fff;text-shadow:0 0 12px #000,0 0 3px #000}
 </style></body></html>`;
-const b = await chromium.launch({executablePath:CHROME});
+const b = await chromium.launch({ executablePath: process.env.MORROW_CHROME ?? CHROME });
 const p = await b.newPage({viewport:{width:2440,height:860},deviceScaleFactor:1});
 await p.setContent(html);
 await p.waitForTimeout(700);

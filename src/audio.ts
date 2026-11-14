@@ -198,3 +198,12 @@ export function hush(): void {
   roomGain.gain.linearRampToValueAtTime(0.012, t + 0.15);
   roomGain.gain.linearRampToValueAtTime(0.05, t + 1.8);
 }
+
+/** 录一条真实的音轨（给演示片用）：把总线接到 MediaStream 上，浏览器自己编 opus。 */
+export function tapStream(): MediaStream | null {
+  const c = ac();
+  if (!c || !master) return null;
+  const dest = c.createMediaStreamDestination();
+  master.connect(dest);
+  return dest.stream;
+}

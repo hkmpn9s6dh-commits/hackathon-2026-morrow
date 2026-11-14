@@ -26,7 +26,7 @@ import {
   type State,
 } from './engine';
 import { BEATS, ENDINGS, FACTS, beatsOfNight, factById, type Beat } from './content';
-import { burnTone, foldTone, hush, keepTone, nightTone, overTone, setMuted, startRoom, tick } from './audio';
+import { burnTone, foldTone, hush, keepTone, nightTone, overTone, setMuted, startRoom, tapStream, tick } from './audio';
 import { drawPoster, type Poster } from './poster';
 
 const NIGHT_TITLES: Record<number, string> = {
@@ -637,6 +637,40 @@ function makeGrain(): void {
 
 let poster: Poster | null = null;
 
+/* 演示片用：把这一局的真实音轨录下来（浏览器编码，不经 ffmpeg）。 */
+let recorder: MediaRecorder | null = null;
+let chunks: Blob[] = [];
+
+function startRecording(): boolean {
+  const stream = tapStream();
+  if (!stream || typeof MediaRecorder === 'undefined') return false;
+  chunks = [];
+  recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+  recorder.ondataavailable = (e) => {
+    if (e.data.size) chunks.push(e.data);
+  };
+  recorder.start();
+  return true;
+}
+
+function stopRecording(): Promise<string> {
+  return new Promise((done) => {
+    if (!recorder) {
+      done('');
+      return;
+    }
+    const r = recorder;
+    r.onstop = () => {
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      const reader = new FileReader();
+      reader.onloadend = () => done(String(reader.result));
+      reader.readAsDataURL(blob);
+    };
+    r.stop();
+    recorder = null;
+  });
+}
+
 function bind(): void {
   el.talk.append(runhead);
 
@@ -751,6 +785,8 @@ function bind(): void {
       beats: BEATS.length,
       fact: (id: string) => factById(id).tokens,
       mute: (v: boolean) => setMuted(v),
+      startRec: () => startRecording(),
+      stopRec: () => stopRecording(),
     },
     configurable: true,
   });
