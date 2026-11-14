@@ -14,7 +14,7 @@ $ bash scripts/verify.sh
 == build           ✓ built
 == end to end      27/27 passed
 == ui measurement  proof/ui/report.md 已更新
-== hygiene         dist: 171229 bytes
+== hygiene         dist: 171103 bytes
 verify: all green
 ```
 
@@ -80,7 +80,7 @@ $ git clone https://github.com/hkmpn9s6dh-commits/hackathon-2026-morrow.git
 $ cd hackathon-2026-morrow && bash scripts/verify.sh
 29 tests passed
 27/27 passed
-dist: 171229 bytes
+dist: 171103 bytes
 verify: all green      ← 退出码 0（commit cb9cbc3）
 ```
 
