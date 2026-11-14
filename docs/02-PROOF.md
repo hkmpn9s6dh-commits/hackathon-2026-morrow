@@ -14,7 +14,7 @@ $ bash scripts/verify.sh
 == build           ✓ built
 == end to end      27/27 passed
 == ui measurement  proof/ui/report.md 已更新
-== hygiene         dist: 154468 bytes
+== hygiene         dist: 155137 bytes
 verify: all green
 ```
 
@@ -77,7 +77,8 @@ $ git clone https://github.com/hkmpn9s6dh-commits/hackathon-2026-morrow.git
 $ cd hackathon-2026-morrow && bash scripts/verify.sh
 29 tests passed
 27/27 passed
-verify: all green      ← 退出码 0
+dist: 155044 bytes
+verify: all green      ← 退出码 0（commit cb9cbc3）
 ```
 
 用的是**另一台机器之外的全新目录**，没有 `node_modules`、没有 `.tmp`、没有任何本机状态；
