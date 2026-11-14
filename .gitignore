@@ -6,3 +6,8 @@ shots/*.png
 *.log
 .pub/
 .tmp/
+
+# 演示片不进仓库（32 MB）；成片放 Release 或随交件包单独传
+submission/*.webm
+submission/.video-tmp/
+.tmp-*

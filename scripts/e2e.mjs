@@ -137,14 +137,19 @@ async function main() {
     check('AC-1 三秒内可交互', readyMs < 3000, `${readyMs}ms`);
 
     const fonts = await page.evaluate(async () => {
-      // 字体是按需加载的：先要一次，再问就有；否则线上会因为慢半拍而误判
-      await document.fonts.load('16px Garamond');
-      await document.fonts.load('16px Plex');
-      await document.fonts.ready;
-      return {
-        garamond: document.fonts.check('16px Garamond'),
-        plex: document.fonts.check('16px Plex'),
+      // 字体是按需加载的：先要一次，再轮询等它落地；否则线上会因为慢半拍而误判
+      const waitFor = async (spec) => {
+        for (let i = 0; i < 50; i += 1) {
+          await document.fonts.load(spec).catch(() => {});
+          if (document.fonts.check(spec)) return true;
+          await new Promise((r) => setTimeout(r, 100));
+        }
+        return document.fonts.check(spec);
       };
+      const garamond = await waitFor('16px Garamond');
+      const plex = await waitFor('16px Plex');
+      await document.fonts.ready;
+      return { garamond, plex };
     });
     check('AC-10 随包字体已加载（Garamond）', fonts.garamond === true);
     check('AC-10 随包字体已加载（Plex）', fonts.plex === true);
