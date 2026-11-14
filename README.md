@@ -7,6 +7,10 @@ An interactive short story for the browser. You are the part of an old man's pho
 
 Five nights, eighteen things he tells you, two folds, one last question: *tell me who I am.*
 
+**Every memory is an object in the room.** Keep the blue cup and the cup is on the table; keep her portrait
+and it hangs on the wall; let one go and that thing burns where it stands. The room fills up with what he
+still has, and empties when he loses it.
+
 **Chroma Awards Season 2 — Game division, Interactive Narrative (Presented by Pickford).**
 
 - Play: `npm ci && npm run build && npm run preview` → http://localhost:4321
@@ -62,12 +66,13 @@ Single tests: `npm test`. Recorded evidence lives in `docs/02-PROOF.md`.
 index.html            one page, no framework
 src/engine.ts         the whole state machine (pure, no DOM)
 src/content.ts        the writing: 18 memories, 5 nights of beats, 5 endings
+src/scene.ts          the room: window, rain, lamp, armchair, the old man, his page
 src/main.ts           wiring: beats, choices, editing, recital, ending
 src/poster.ts         the burning card on the cover (canvas, procedural)
 src/audio.ts          all sound, synthesised with WebAudio — no audio files
 src/styles.css        lamp + ledger
 test/engine.test.ts   29 unit tests
-scripts/              verify.sh, e2e.mjs, measure-ui.mjs, shot.mjs, serve.mjs
+scripts/              verify.sh, e2e.mjs, measure-ui.mjs, shot.mjs, hero.mjs, serve.mjs
 docs/                 00-SPEC 01-UI 02-PROOF 03-AI 04-SOURCES 05-SUBMISSION
 proof/                UI measurement report, gate-D blind ranking, ruler thumbnails
 ```

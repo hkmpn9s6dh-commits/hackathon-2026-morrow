@@ -14,12 +14,15 @@ $ bash scripts/verify.sh
 == build           ✓ built
 == end to end      27/27 passed
 == ui measurement  proof/ui/report.md 已更新
-== hygiene         dist: 155137 bytes
+== hygiene         dist: 171229 bytes
 verify: all green
 ```
 
 用例如下（`test/engine.test.ts`，29 条）：窗口算术 5 · 删除 4 · 折起 4 · 系统指令 3 · 换夜 3 ·
 结局 6 · 内容自洽 4。
+
+这次的画面改版（`src/scene.ts`，房间/人/光）之后，上面 29 + 27 条**未改一行断言仍然全绿**——
+引擎与画面是分开的两层，画面只读状态，不改状态。
 
 其中两条是「这件作品还算不算一件作品」的兜底：
 
@@ -77,7 +80,7 @@ $ git clone https://github.com/hkmpn9s6dh-commits/hackathon-2026-morrow.git
 $ cd hackathon-2026-morrow && bash scripts/verify.sh
 29 tests passed
 27/27 passed
-dist: 155044 bytes
+dist: 171229 bytes
 verify: all green      ← 退出码 0（commit cb9cbc3）
 ```
 

@@ -117,7 +117,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 8;
-  background: radial-gradient(120% 100% at 40% 45%, transparent 42%, rgba(0, 0, 0, 0.55) 100%);
+  background: radial-gradient(130% 110% at 42% 45%, transparent 46%, rgba(0, 0, 0, 0.42) 100%);
 }
 
 .ash {
@@ -127,58 +127,79 @@ body {
   z-index: 12;
 }
 
-/* —— 骨架 —— */
+/* —— 骨架：房间在底下，字浮在上面 —— */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
 .shell {
-  position: relative;
+  position: fixed;
+  inset: 0;
   z-index: 10;
-  height: 100%;
-  max-width: 1340px;
-  margin: 0 auto;
-  padding: clamp(28px, 5vh, 64px) clamp(24px, 4.4vw, 72px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 372px;
-  gap: clamp(28px, 4vw, 64px);
-  align-items: start;
+  pointer-events: none;
+}
+
+.shell > * {
+  pointer-events: auto;
 }
 
 .runhead {
+  position: absolute;
+  top: clamp(16px, 3vh, 30px);
+  left: clamp(24px, 4.2vw, 64px);
+  width: min(560px, 46vw);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule-soft);
-  margin-bottom: auto;
+  margin-bottom: 18px;
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(122, 116, 104, 0.9);
+  color: rgba(150, 142, 126, 0.95);
 }
 
 .runhead .where {
   color: var(--ink-mute);
 }
 
+/* 台词在下面一条实心带子里：画面归画面，字归字，不再互相压 */
 .talk {
-  min-width: 0;
-  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 174px;
+  max-height: 40vh;
+  padding: 14px clamp(24px, 4vw, 56px) 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 4vh;
+  background: linear-gradient(180deg, #08090c 0%, #06070a 100%);
+  border-top: 1px solid rgba(239, 233, 221, 0.09);
+  box-shadow: 0 -40px 80px -40px rgba(0, 0, 0, 0.9);
 }
 
 .window {
-  height: 100%;
-  max-height: 100%;
+  position: absolute;
+  top: clamp(14px, 2.2vh, 26px);
+  bottom: calc(clamp(174px, 26vh, 300px) + 14px);
+  right: clamp(14px, 2.2vw, 30px);
+  width: clamp(280px, 22vw, 316px);
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 20px 18px 16px;
+  gap: 12px;
+  padding: 16px 15px 14px;
   border: 1px solid var(--rule-soft);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0.006));
+  background: linear-gradient(180deg, rgba(10, 12, 15, 0.92), rgba(8, 9, 12, 0.86));
   border-radius: 3px;
+  backdrop-filter: blur(2px);
   transition:
     border-color 0.5s ease,
     box-shadow 0.5s ease;
@@ -321,6 +342,7 @@ body {
 }
 
 .card {
+  flex: 0 0 auto;
   position: relative;
   border: 1px solid var(--rule-soft);
   background: rgba(255, 255, 255, 0.014);
@@ -574,7 +596,7 @@ body {
 .line.elias p {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(21px, 2.05vw, 27px);
+  font-size: clamp(19px, 1.75vw, 24px);
   line-height: 1.46;
   letter-spacing: 0.002em;
   color: var(--ink);
@@ -626,13 +648,14 @@ body {
 /* —— 回答选项 —— */
 .choices {
   display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin-top: 26px;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 12px;
   animation: rise 0.5s 0.1s both;
 }
 
 .choice {
+  flex: 1;
   appearance: none;
   text-align: left;
   border: 1px solid var(--rule-soft);
@@ -640,9 +663,9 @@ body {
   background: transparent;
   color: var(--ink-dim);
   font-family: var(--mono);
-  font-size: 13px;
-  line-height: 1.5;
-  padding: 13px 15px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  padding: 11px 13px;
   cursor: pointer;
   display: flex;
   gap: 12px;

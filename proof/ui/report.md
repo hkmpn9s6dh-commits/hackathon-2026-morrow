@@ -9,22 +9,22 @@
 
 | 视口 | 选择器 | 档 | 字号 | 对比度 | 背景 | 结论 |
 | --- | --- | --- | --- | --- | --- | --- |
-| desktop | `.line.elias p` | 阅读 | 27px | 16.4:1 | rgb(9,10,12) | ✓ |
+| desktop | `.line.elias p` | 阅读 | 24px | 16.4:1 | rgb(9,10,12) | ✓ |
 | desktop | `.prompt` | 阅读 | 12px | 9.2:1 | rgb(9,10,12) | ✓ |
-| desktop | `.speaker` | 标签 | 27px | 16.4:1 | rgb(9,10,12) | ✓ |
+| desktop | `.speaker` | 标签 | 24px | 16.4:1 | rgb(9,10,12) | ✓ |
 | desktop | `.plate` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
 | desktop | `.gauge-line` | 标签 | 11px | 9.2:1 | rgb(9,10,12) | ✓ |
 | desktop | `.instruction` | 标签 | 10.5px | 10.5:1 | rgb(9,10,12) | ✓ |
-| desktop | `.runhead` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
+| desktop | `.runhead` | 标签 | 10px | 6.1:1 | rgb(9,10,12) | ✓ |
 | desktop | `.btn` | 标签 | 10.5px | 16.4:1 | rgb(9,10,12) | ✓ |
 | desktop | `.tally` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
-| laptop | `.line.elias p` | 阅读 | 26.24px | 16.4:1 | rgb(9,10,12) | ✓ |
+| laptop | `.line.elias p` | 阅读 | 22.4px | 16.4:1 | rgb(9,10,12) | ✓ |
 | laptop | `.prompt` | 阅读 | 12px | 9.2:1 | rgb(9,10,12) | ✓ |
-| laptop | `.speaker` | 标签 | 26.24px | 16.4:1 | rgb(9,10,12) | ✓ |
+| laptop | `.speaker` | 标签 | 22.4px | 16.4:1 | rgb(9,10,12) | ✓ |
 | laptop | `.plate` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
 | laptop | `.gauge-line` | 标签 | 11px | 9.2:1 | rgb(9,10,12) | ✓ |
 | laptop | `.instruction` | 标签 | 10.5px | 10.5:1 | rgb(9,10,12) | ✓ |
-| laptop | `.runhead` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
+| laptop | `.runhead` | 标签 | 10px | 6.1:1 | rgb(9,10,12) | ✓ |
 | laptop | `.btn` | 标签 | 10.5px | 16.4:1 | rgb(9,10,12) | ✓ |
 | laptop | `.tally` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
 | phone | `.line.elias p` | 阅读 | 20px | 16.4:1 | rgb(9,10,12) | ✓ |
@@ -33,7 +33,7 @@
 | phone | `.plate` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
 | phone | `.gauge-line` | 标签 | 11px | 9.2:1 | rgb(9,10,12) | ✓ |
 | phone | `.instruction` | 标签 | 10.5px | 10.5:1 | rgb(9,10,12) | ✓ |
-| phone | `.runhead` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
+| phone | `.runhead` | 标签 | 10px | 6.1:1 | rgb(9,10,12) | ✓ |
 | phone | `.btn` | 标签 | 10.5px | 16.4:1 | rgb(9,10,12) | ✓ |
 | phone | `.tally` | 标签 | 10px | 4.3:1 | rgb(9,10,12) | ✓ |
 

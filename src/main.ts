@@ -28,6 +28,7 @@ import {
 import { BEATS, ENDINGS, FACTS, beatsOfNight, factById, type Beat } from './content';
 import { burnTone, foldTone, hush, keepTone, nightTone, overTone, setMuted, startRoom, tapStream, tick } from './audio';
 import { drawPoster, type Poster } from './poster';
+import { createScene, type SceneApi } from './scene';
 
 const NIGHT_TITLES: Record<number, string> = {
   1: 'The room',
@@ -57,6 +58,7 @@ const el = {
   cover: document.querySelector<HTMLElement>('#cover')!,
   begin: document.querySelector<HTMLButtonElement>('#begin')!,
   ash: document.querySelector<HTMLCanvasElement>('#ash')!,
+  scene: document.querySelector<HTMLCanvasElement>('#scene')!,
   grain: document.querySelector<HTMLElement>('#grain')!,
 };
 
@@ -156,6 +158,7 @@ function renderWindow(): void {
     el.prompt.textContent = `${state.cards.length} kept · ${state.compressionsLeft} fold${state.compressionsLeft === 1 ? '' : 's'} left in the whole story`;
   }
   el.tally.textContent = `${state.cards.length} in the window · ${droppedLabels(state).length} not`;
+  scene?.setMemories(state.cards.flatMap((c) => c.from));
 
   el.editBtn.textContent = editing ? 'Done' : 'Edit';
   el.foldBtn.disabled = !editing || picked.length !== 2 || state.compressionsLeft <= 0;
@@ -171,6 +174,8 @@ function togglePick(id: string): void {
 function dropCard(id: string, node: HTMLElement): void {
   if (overBy(state) <= 0 && !editing) return;
   node.classList.add('is-burning');
+  const factId = state.cards.find((c) => c.id === id)?.from[0];
+  if (factId) scene?.burn(factId);
   burnTone();
   hush();
   ashBurst(node.getBoundingClientRect());
@@ -217,8 +222,8 @@ function afterBudgetChange(): void {
 
 function trimThread(): void {
   const lines = [...el.talk.querySelectorAll('.line')];
-  if (lines.length > 5) {
-    for (const old of lines.slice(0, lines.length - 5)) {
+  if (lines.length > 2) {
+    for (const old of lines.slice(0, lines.length - 2)) {
       old.remove();
     }
     // 顶上那一条现在是第一句，把说话人补回来，否则读起来像没头没尾
@@ -542,6 +547,7 @@ function finish(): void {
   wrap.append(box);
   el.talk.append(wrap);
   el.shell.classList.add('dimmed');
+  scene?.fade(0.72);
   renderWindow();
 }
 
@@ -636,6 +642,7 @@ function makeGrain(): void {
 /* ——————————————————————————————— 启动 ——————————————————————————————— */
 
 let poster: Poster | null = null;
+let scene: SceneApi | null = null;
 
 /* 演示片用：把这一局的真实音轨录下来（浏览器编码，不经 ffmpeg）。 */
 let recorder: MediaRecorder | null = null;
@@ -672,10 +679,11 @@ function stopRecording(): Promise<string> {
 }
 
 function bind(): void {
-  el.talk.append(runhead);
+  el.shell.append(runhead);
 
   const posterCanvas = document.querySelector<HTMLCanvasElement>('#poster');
   if (posterCanvas) poster = drawPoster(posterCanvas);
+  scene = createScene(el.scene);
 
   if (window.matchMedia('(max-width: 1080px)').matches) el.window.classList.add('folded');
   el.window.querySelector('.plate')?.addEventListener('click', () => {

@@ -19,8 +19,9 @@ const CHROME =
   process.env.MORROW_CHROME ??
   'C:/Users/张一/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe';
 
+// 交件缩略图（馆里看到的那张）由 scripts/hero.mjs 出，是从游戏里实拍的；
+// 这里只出封面图，给文案页和社交用。
 const SHOTS = [
-  { name: 'thumbnail.png', width: 1500, height: 844 },
   { name: 'cover-1600x900.png', width: 1600, height: 900 },
 ];
 
