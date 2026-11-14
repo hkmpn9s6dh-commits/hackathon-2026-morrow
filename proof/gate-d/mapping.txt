@@ -1,0 +1,6 @@
+A = R3 Vibe Survivor
+B = R4 GAME RUSH
+C = MINE
+D = R5 BlokAIsia
+E = R2 GENESIS / INTERFACE
+F = R1 The Dream

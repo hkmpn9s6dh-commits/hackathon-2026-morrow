@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>What Morrow Keeps</title>
+    <meta
+      name="description"
+      content="What Morrow Keeps — you are a companion model's context window. Five nights, 4,096 tokens, and an old man who wants to know who he is. Chroma Awards Season 2, Interactive Narrative."
+    />
+    <meta name="theme-color" content="#090a0c" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23090a0c'/%3E%3Crect x='9' y='7' width='14' height='18' fill='none' stroke='%23e3a95f' stroke-width='1.4'/%3E%3Cline x1='9' y1='13' x2='23' y2='13' stroke='%23e3a95f' stroke-width='1.4'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div class="room" aria-hidden="true"></div>
+    <div class="grain" id="grain" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <canvas class="ash" id="ash" aria-hidden="true"></canvas>
+
+    <main class="shell" id="shell" hidden>
+      <section class="talk" id="talk" aria-live="polite"></section>
+
+      <aside class="window" id="window" aria-label="Morrow's context window">
+        <div class="plate">
+          <span>What Morrow Keeps</span>
+          <span class="night" id="night">Night 1 / 5</span>
+        </div>
+
+        <div class="gauge">
+          <div class="gauge-line">
+            <span><span id="tokens">180</span> <span class="cap">/ 4,096 tokens</span></span>
+            <span id="free">free 3,916</span>
+          </div>
+          <div class="bar"><i id="fill"></i></div>
+        </div>
+
+        <div class="instruction" id="instruction">
+          <div class="head">
+            <span>instruction</span>
+            <span>180</span>
+          </div>
+          <div class="body" id="instruction-text"></div>
+        </div>
+
+        <ul class="cards" id="cards"></ul>
+        <div class="void" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+
+        <div class="window-foot">
+          <p class="tally" id="tally"></p>
+          <p class="prompt" id="prompt"></p>
+          <div class="row">
+            <button class="btn" id="edit-btn" type="button">Edit</button>
+            <button class="btn" id="fold-btn" type="button" disabled>Fold two</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="cover" id="cover">
+      <div class="cover-inner">
+        <div class="cover-text">
+          <p class="kicker">Chroma Awards · Season 2 · Interactive Narrative</p>
+          <h1>What <em>Morrow</em><br />Keeps</h1>
+          <p class="sub">
+            You are the part of an old man's phone that remembers. The window holds 4,096 tokens.
+            When it fills, something has to go.
+          </p>
+          <div class="rule"></div>
+          <p class="how">
+            Five nights. He tells you things. You decide which ones survive — and at the end he
+            asks you who he is. Every memory you drop is a thing he will not have tomorrow.
+          </p>
+          <button class="begin" id="begin" type="button">Begin <span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="poster-slot">
+          <canvas id="poster" aria-hidden="true"></canvas>
+        </div>
+      </div>
+      <div class="foot">
+        <span>Sound on · headphones</span>
+        <span>About 8 minutes · one sitting</span>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

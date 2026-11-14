@@ -1,0 +1,31 @@
+{
+  "name": "morrow",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "What Morrow Keeps — you are a companion model's context window. Chroma Awards Season 2, Interactive Narrative.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4321 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "node scripts/e2e.mjs",
+    "measure": "node scripts/measure-ui.mjs",
+    "shot": "node scripts/shot.mjs",
+    "verify": "bash scripts/verify.sh"
+  },
+  "devDependencies": {
+    "@fontsource/eb-garamond": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@types/node": "^26.6.6",
+    "playwright-core": "^1.56.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.7",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

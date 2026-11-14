@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.tmp/
+shots/*.png
+!proof/shots/*.png
+*.log
+.pub/
+.tmp/
