@@ -7,7 +7,7 @@ const files = [
   ['proof/gate-d/rulers/03-vibe-survivor.png','R3 Vibe Survivor'],
   ['proof/gate-d/rulers/01-game-rush.png','R4 GAME RUSH'],
   ['proof/gate-d/rulers/04-blokaisia.jpg','R5 BlokAIsia'],
-  ['shots/01-cover.png','MINE'],
+  [process.env.MORROW_MINE ?? 'shots/01-cover.png','MINE'],
 ];
 // 固定洗牌（seed 写在这里，谁都能复现）
 let seed = 20260108;
@@ -36,6 +36,6 @@ const b = await chromium.launch({ executablePath: process.env.MORROW_CHROME ?? C
 const p = await b.newPage({viewport:{width:2440,height:860},deviceScaleFactor:1});
 await p.setContent(html);
 await p.waitForTimeout(700);
-await p.screenshot({path:'proof/gate-d/board-r1.png', fullPage:true});
+await p.screenshot({path:`proof/gate-d/${process.env.MORROW_BOARD ?? 'board-r1'}.png`, fullPage:true});
 console.log(mapping.join(' | '));
 await b.close();

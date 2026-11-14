@@ -312,10 +312,10 @@ export function createScene(canvas: HTMLCanvasElement): SceneApi {
     // 肩膀与躯干：斜肩，不要平顶
     ctx!.fillStyle = '#161c25';
     ctx!.beginPath();
-    ctx!.moveTo(cx - 100, 604);
+    ctx!.moveTo(cx - 100, 596);
     ctx!.quadraticCurveTo(cx - 96, 396, cx - 56, 352);
     ctx!.quadraticCurveTo(cx - 4, 330, cx + 56, 352);
-    ctx!.quadraticCurveTo(cx + 96, 396, cx + 100, 604);
+    ctx!.quadraticCurveTo(cx + 96, 396, cx + 100, 596);
     ctx!.closePath();
     ctx!.fill();
 
@@ -387,18 +387,11 @@ export function createScene(canvas: HTMLCanvasElement): SceneApi {
       ctx!.stroke();
     }
 
-    // 膝
-    ctx!.fillStyle = '#10161d';
-    ctx!.beginPath();
-    ctx!.ellipse(cx - 58, 545, 46, 34, -0.2, 0, Math.PI * 2);
-    ctx!.ellipse(cx + 56, 545, 46, 34, 0.2, 0, Math.PI * 2);
-    ctx!.fill();
-
     // 纸的光打回他脸上（很淡，但这是"他在读"的证据）
     ctx!.save();
     ctx!.globalCompositeOperation = 'lighter';
     const glow = ctx!.createRadialGradient(cx - 4, 430, 0, cx - 4, 430, 150);
-    glow.addColorStop(0, 'rgba(227,169,95,0.18)');
+    glow.addColorStop(0, 'rgba(227,169,95,0.12)');
     glow.addColorStop(1, 'rgba(227,169,95,0)');
     ctx!.fillStyle = glow;
     ctx!.fillRect(cx - 160, 300, 320, 240);

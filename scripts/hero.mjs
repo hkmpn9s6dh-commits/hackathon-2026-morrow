@@ -43,6 +43,25 @@ async function main() {
     // 停在有选项的那一拍：图里看得出"这是个能玩的游戏"
     await page.waitForSelector('.choices .choice', { timeout: 8000 }).catch(() => {});
     await page.waitForTimeout(2200);
+
+    // 一、带界面的实拍（说明"这是个能玩的游戏"）
+    await page.screenshot({ path: resolve(out, 'ingame-ui.png') });
+    console.log('  ingame-ui.png 1500×844');
+
+    // 二、把界面收起来，只留画面（画廊缩略图用：一眼是图，不是字）
+    await page.evaluate(() => {
+      for (const sel of ['#window', '.talk', '.runhead']) {
+        const el = document.querySelector(sel);
+        if (el) el.style.display = 'none';
+      }
+      // 推近一点：缩略图里要让他占住画面
+      const scene = document.querySelector('#scene');
+      if (scene) {
+        scene.style.transform = 'scale(1.12)';
+        scene.style.transformOrigin = '50% 58%';
+      }
+    });
+    await page.waitForTimeout(900);
     await page.screenshot({ path: resolve(out, 'thumbnail.png') });
     console.log('  thumbnail.png 1500×844');
   } finally {
